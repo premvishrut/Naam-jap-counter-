@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>श्री राधा नाम जप काउंटर</title>
+
+    <!-- ================================================== -->
+    <!--          GOOGLE ADSENSE SCRIPT                     -->
+    <!-- This is the code for your approved AdSense account -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4281309442931819"
+     crossorigin="anonymous"></script>
+    <!-- ================================================== -->
+
+    <style>
+        /* All your CSS styling remains the same */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #FEF2F2; color: #881337; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 95vh; user-select: none; -webkit-user-select: none; }
+        .container { width: 100%; max-width: 400px; text-align: center; }
+        h1 { font-size: 2rem; color: #BE123C; margin-bottom: 20px; }
+        .counter-display { background-color: #FFF1F2; border: 2px solid #F472B6; border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        #japCount { font-size: 5rem; font-weight: bold; line-height: 1; }
+        #malaCount { font-size: 1.5rem; font-weight: 600; margin-top: 10px; color: #E11D48; }
+        #japButton { width: 180px; height: 180px; background: linear-gradient(145deg, #f871b5, #e11d48); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 15px rgba(225, 29, 72, 0.4); transition: transform 0.1s ease, box-shadow 0.1s ease; margin: 0 auto; }
+        #japButton:active { transform: scale(0.95); box-shadow: 0 4px 10px rgba(225, 29, 72, 0.5); }
+        #japButton span { font-size: 4rem; font-weight: bold; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        .reset-controls { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .reset-button { background-color: #9F1239; color: white; border: none; border-radius: 8px; padding: 10px 20px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s; }
+        .reset-button:hover { background-color: #881337; }
+        .history-section { margin-top: 40px; background-color: #FFF1F2; padding: 15px; border-radius: 10px; text-align: left; border-left: 5px solid #F472B6; }
+        .history-section h2 { font-size: 1.5rem; margin-top: 0; color: #BE123C; }
+        .history-section p { font-size: 1rem; line-height: 1.6; color: #9F1239; }
+    </style>
+</head>
+<body>
+    <!-- The rest of your HTML Body and Script tags are the same -->
+    <div class="container">
+        <h1>श्री राधा नाम जप काउंटर</h1>
+        <div class="counter-display">
+            <div id="japCount">0</div>
+            <div id="malaCount">माला: 0</div>
+        </div>
+        <div id="japButton" role="button" aria-label="Jap Karein">
+            <span>जप</span>
+        </div>
+        <div class="reset-controls">
+            <button id="resetJapButton" class="reset-button">जप रीसेट करें</button>
+            <button id="resetMalaButton" class="reset-button">माला रीसेट करें</button>
+        </div>
+        <div class="history-section">
+            <h2>श्री राधा नाम का महत्व</h2>
+            <p>"श्री राधा" नाम केवल एक शब्द नहीं, बल्कि प्रेम, भक्ति और समर्पण का सागर है। शास्त्रों के अनुसार, राधा रानी भगवान श्री कृष्ण की ह्लादिनी शक्ति हैं, अर्थात उनकी आनंद प्रदान करने वाली ऊर्जा।</p>
+            <p>राधा नाम का जप करने से मन को शांति मिलती है, हृदय शुद्ध होता है और भगवान कृष्ण की कृपा सहज ही प्राप्त हो जाती है। यह माना जाता है कि जहाँ राधा का नाम है, वहाँ कृष्ण स्वयं वास करते हैं। इस नाम का निरंतर स्मरण जीवन को प्रेम और आनंद से भर देता है।</p>
+        </div>
+    </div>
+    <script>
+        // All your JavaScript remains the same
+        const japCountElement = document.getElementById('japCount');
+        const malaCountElement = document.getElementById('malaCount');
+        const japButton = document.getElementById('japButton');
+        const resetJapButton = document.getElementById('resetJapButton');
+        const resetMalaButton = document.getElementById('resetMalaButton');
+        let japCount = 0;
+        let malaCount = 0;
+        function updateDisplay() { japCountElement.textContent = japCount; malaCountElement.textContent = 'माला: ' + malaCount; }
+        function vibrate(duration) { if ('vibrate' in navigator) { navigator.vibrate(duration); } }
+        function handleJap() { japCount++; if (japCount >= 108) { japCount = 0; malaCount++; vibrate([100, 50, 100]); } else { vibrate(50); } updateDisplay(); }
+        function resetJap() { if (confirm('क्या आप वर्तमान जप गिनती को शून्य पर रीसेट करना चाहते हैं?')) { japCount = 0; updateDisplay(); vibrate(100); } }
+        function resetMala() { if (confirm('क्या आप जप और माला दोनों की गिनती पूरी तरह से रीसेट करना चाहते हैं?')) { japCount = 0; malaCount = 0; updateDisplay(); vibrate(100); } }
+        japButton.addEventListener('click', handleJap);
+        resetJapButton.addEventListener('click', resetJap);
+        resetMalaButton.addEventListener('click', resetMala);
+        updateDisplay();
+    </script>
+</body>
+</html>
